@@ -1,0 +1,232 @@
+╔══════════════════════════════════════════════════════╗
+║  FashionMNIST Federated Learning Experiment       ║
+╠══════════════════════════════════════════════════════╣
+║  Clients        : 20                                  ║
+║  Rounds         : 50                                  ║
+║  Dirichlet α    : 0.3                                 ║
+║  Coalitions (K) : 3                                   ║
+║  Warmup rounds  : 15                                  ║
+║  Recluster int. : 15                                  ║
+║  λ_fair (MFG)   : 0.5                                 ║
+║  γ_grad         : 0.9                                 ║
+║  Personal heads : True                                ║
+║  Device         : cuda                                ║
+║  Seed           : 42                                  ║
+╚══════════════════════════════════════════════════════╝
+
+[Runner] Loading FashionMNIST data ...
+
+[Data] FashionMNIST | 20 clients | Dirichlet α=0.3
+
+Client    Samples  Classes  Dominant class
+-------------------------------------------------------
+0            2985        9  Pullover
+1            3974       10  Shirt
+2            6805        8  Sneaker
+3            6714        9  Trouser
+4            1335        9  Pullover
+5            2574       10  Sandal
+6            2558        9  Ankle boot
+7            2295        7  Dress
+8            3945        8  Bag
+9            2182        8  Coat
+10           2266       10  Coat
+11           1401        8  Sandal
+12           2631        6  Coat
+13           3259       10  Sandal
+14           1569       10  Dress
+15           3424        9  Sandal
+16           1584        9  T-shirt
+17           3071        9  Bag
+18           1618       10  Dress
+19           3810       10  Sneaker
+[Data] Total train: 54009 | Test: 10000 | Min/Max per client: 1202/6125
+
+[Runner] Algorithms: ['FedAvg', 'FedProx', 'SCAFFOLD', 'MOON', 'FedBN', 'pFedME', 'IFCA', 'CFL', 'RandomCluster', 'HedonicMFG']
+
+==================================================
+  Running: FedAvg [FashionMNIST]
+==================================================
+[         FedAvg] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 56.42%  Client: 56.39%
+[         FedAvg] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 82.23%  Client: 81.89%
+[         FedAvg] Round  20/50 [████████░░░░░░░░░░░░] Global: 85.55%  Client: 85.11%
+[         FedAvg] Round  30/50 [████████████░░░░░░░░] Global: 87.24%  Client: 86.82%
+[         FedAvg] Round  40/50 [████████████████░░░░] Global: 88.02%  Client: 88.08%
+[         FedAvg] Round  50/50 [████████████████████] Global: 88.68%  Client: 88.81%
+  [FedAvg] Best global: 88.77%  Best client: 88.81%
+Results saved to ./results/fmnist/fmnist_results.json
+  ✓ FedAvg done in 22.1 min
+
+==================================================
+  Running: FedProx [FashionMNIST]
+==================================================
+[        FedProx] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 56.34%  Client: 56.55%
+[        FedProx] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 82.18%  Client: 81.79%
+[        FedProx] Round  20/50 [████████░░░░░░░░░░░░] Global: 85.55%  Client: 84.98%
+[        FedProx] Round  30/50 [████████████░░░░░░░░] Global: 87.25%  Client: 86.88%
+[        FedProx] Round  40/50 [████████████████░░░░] Global: 87.98%  Client: 88.07%
+[        FedProx] Round  50/50 [████████████████████] Global: 88.67%  Client: 88.73%
+  [FedProx] Best global: 88.69%  Best client: 88.73%
+Results saved to ./results/fmnist/fmnist_results.json
+  ✓ FedProx done in 22.6 min
+
+==================================================
+  Running: SCAFFOLD [FashionMNIST]
+==================================================
+[       SCAFFOLD] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 36.54%  Client: 30.38%
+[       SCAFFOLD] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 74.14%  Client: 72.76%
+[       SCAFFOLD] Round  20/50 [████████░░░░░░░░░░░░] Global: 77.89%  Client: 77.33%
+[       SCAFFOLD] Round  30/50 [████████████░░░░░░░░] Global: 79.68%  Client: 78.79%
+[       SCAFFOLD] Round  40/50 [████████████████░░░░] Global: 80.77%  Client: 79.99%
+[       SCAFFOLD] Round  50/50 [████████████████████] Global: 81.34%  Client: 80.06%
+  [SCAFFOLD] Best global: 81.56%  Best client: 80.24%
+Results saved to ./results/fmnist/fmnist_results.json
+  ✓ SCAFFOLD done in 22.2 min
+
+==================================================
+  Running: MOON [FashionMNIST]
+==================================================
+[           MOON] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 56.60%  Client: 56.40%
+[           MOON] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 78.73%  Client: 78.31%
+[           MOON] Round  20/50 [████████░░░░░░░░░░░░] Global: 81.35%  Client: 80.85%
+[           MOON] Round  30/50 [████████████░░░░░░░░] Global: 83.59%  Client: 82.60%
+[           MOON] Round  40/50 [████████████████░░░░] Global: 84.03%  Client: 82.97%
+[           MOON] Round  50/50 [████████████████████] Global: 84.26%  Client: 83.14%
+  [MOON] Best global: 84.43%  Best client: 83.43%
+Results saved to ./results/fmnist/fmnist_results.json
+  ✓ MOON done in 24.4 min
+
+==================================================
+  Running: FedBN [FashionMNIST]
+==================================================
+  Note: FashionCNN has no BN — FedBN equivalent to FedAvg
+[          FedBN] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 56.42%  Client: 56.39%
+[          FedBN] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 82.23%  Client: 81.89%
+[          FedBN] Round  20/50 [████████░░░░░░░░░░░░] Global: 85.55%  Client: 85.11%
+[          FedBN] Round  30/50 [████████████░░░░░░░░] Global: 87.24%  Client: 86.82%
+[          FedBN] Round  40/50 [████████████████░░░░] Global: 88.02%  Client: 88.08%
+[          FedBN] Round  50/50 [████████████████████] Global: 88.68%  Client: 88.81%
+  [FedBN] Best global: 88.77%  Best client: 88.81%
+Results saved to ./results/fmnist/fmnist_results.json
+  ✓ FedBN done in 22.0 min
+
+==================================================
+  Running: pFedME [FashionMNIST]
+==================================================
+[         pFedME] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 10.00%  Client: 56.49%
+[         pFedME] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 10.00%  Client: 27.97%
+[         pFedME] Round  20/50 [████████░░░░░░░░░░░░] Global: 25.57%  Client: 56.46%
+[         pFedME] Round  30/50 [████████████░░░░░░░░] Global: 11.67%  Client: 58.56%
+[         pFedME] Round  40/50 [████████████████░░░░] Global: 10.00%  Client: 63.11%
+[         pFedME] Round  50/50 [████████████████████] Global: 17.59%  Client: 40.84%
+  [pFedME] Best global: 27.93%  Best client: 72.88%
+Results saved to ./results/fmnist/fmnist_results.json
+  ✓ pFedME done in 69.8 min
+
+==================================================
+  Running: IFCA [FashionMNIST]
+==================================================
+[           IFCA] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 11.50%  Client: 52.07%
+[           IFCA] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 64.15%  Client: 83.68%
+[           IFCA] Round  20/50 [████████░░░░░░░░░░░░] Global: 23.43%  Client: 87.72%
+[           IFCA] Round  30/50 [████████████░░░░░░░░] Global: 23.08%  Client: 89.59%
+[           IFCA] Round  40/50 [████████████████░░░░] Global: 68.75%  Client: 89.81%
+[           IFCA] Round  50/50 [████████████████████] Global: 27.10%  Client: 90.53%
+  [IFCA] Best global: 73.93%  Best client: 90.56%
+Results saved to ./results/fmnist/fmnist_results.json
+  ✓ IFCA done in 30.1 min
+
+==================================================
+  Running: CFL [FashionMNIST]
+==================================================
+[            CFL] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 56.42%  Client: 56.54%
+[            CFL] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 81.97%  Client: 81.70%
+[            CFL] Round  20/50 [████████░░░░░░░░░░░░] Global: 85.66%  Client: 84.94%
+[            CFL] Round  30/50 [████████████░░░░░░░░] Global: 86.89%  Client: 87.44%
+[            CFL] Round  40/50 [████████████████░░░░] Global: 87.88%  Client: 87.84%
+[            CFL] Round  50/50 [████████████████████] Global: 88.70%  Client: 88.52%
+  [CFL] Best global: 88.73%  Best client: 88.52%
+Results saved to ./results/fmnist/fmnist_results.json
+  ✓ CFL done in 22.0 min
+
+==================================================
+  Running: RandomCluster [FashionMNIST]
+==================================================
+  [RandomCluster] Warmup: 15 rounds
+  [RandomCluster] Initial clusters: [[0, 1, 11, 16, 9, 12, 14], [17, 8, 3, 13, 19, 7, 6], [15, 5, 18, 2, 4, 10]]
+[  RandomCluster] Round  16/50 [██████░░░░░░░░░░░░░░] Global: 84.87%  Client: 82.58%
+[  RandomCluster] Round  20/50 [████████░░░░░░░░░░░░] Global: 85.67%  Client: 84.99%
+[  RandomCluster] Round  30/50 [████████████░░░░░░░░] Global: 86.97%  Client: 87.14%
+[  RandomCluster] Round  40/50 [████████████████░░░░] Global: 87.82%  Client: 88.25%
+[  RandomCluster] Round  50/50 [████████████████████] Global: 88.37%  Client: 88.55%
+  [RandomCluster] Best global: 88.43%  Best client: 88.69%
+Results saved to ./results/fmnist/fmnist_results.json
+  ✓ RandomCluster done in 21.2 min
+
+==================================================
+  Running: HedonicMFG [FashionMNIST]
+==================================================
+
+  [Phase 1] Warmup (15 rounds) ...
+  [Phase 1] Warmup complete. Global acc: 84.52%
+
+  [Phase 2] Initial coalition formation (K=3)...
+  Coalitions: [[0, 1, 9, 11, 12, 14, 16], [3, 6, 7, 8, 13, 17, 19], [2, 4, 5, 10, 15, 18]]
+  Sizes: [7, 7, 6]
+
+  [Phase 3] Clustered training with MFG (35 rounds)...
+[     HedonicMFG] Round  16/50 [██████░░░░░░░░░░░░░░] Global: 84.84%  Client: 88.55%
+[     HedonicMFG] Round  20/50 [████████░░░░░░░░░░░░] Global: 85.75%  Client: 90.19%
+[     HedonicMFG] Round  30/50 [████████████░░░░░░░░] Global: 87.12%  Client: 89.59%
+[     HedonicMFG] Round  40/50 [████████████████░░░░] Global: 88.00%  Client: 90.28%
+[     HedonicMFG] Round  50/50 [████████████████████] Global: 88.25%  Client: 90.81%
+
+  [HedonicMFG] Best global: 88.41%  Best client: 90.89%
+Results saved to ./results/fmnist/fmnist_results.json
+  ✓ HedonicMFG done in 29.2 min
+
+
+========================================================================
+  FINAL RESULTS — FashionMNIST (α=0.3)
+========================================================================
+
+========================================================================
+Algorithm             Best Global  Final Global  Best Client  Final Client
+========================================================================
+FedAvg                     88.77%         88.68%        88.81%         88.81%
+FedProx                    88.69%         88.67%        88.73%         88.73%
+SCAFFOLD                   81.56%         81.34%        80.24%         80.06%
+MOON                       84.43%         84.26%        83.43%         83.14%
+FedBN                      88.77%         88.68%        88.81%         88.81%
+pFedME                     27.93%         17.59%        72.88%         40.84%
+IFCA                       73.93%         27.10%        90.56%         90.53%
+CFL                        88.73%         88.70%        88.52%         88.52%
+RandomCluster              88.43%         88.37%        88.69%         88.55%
+HedonicMFG                 88.41%         88.25%        90.89%         90.81%
+========================================================================
+
+  Total time: 285.7 min
+
+────────────────────────────────────────────────────────────
+  HedonicMFG vs Baselines:
+────────────────────────────────────────────────────────────
+  vs FedAvg            Global: ✗ -0.36%   Client: ✓ +2.08%
+  vs FedProx           Global: ✗ -0.28%   Client: ✓ +2.16%
+  vs SCAFFOLD          Global: ✓ +6.85%   Client: ✓ +10.66%
+  vs MOON              Global: ✓ +3.98%   Client: ✓ +7.46%
+  vs FedBN             Global: ✗ -0.36%   Client: ✓ +2.08%
+  vs pFedME            Global: ✓ +60.48%   Client: ✓ +18.02%
+  vs IFCA              Global: ✓ +14.48%   Client: ✓ +0.33%
+  vs CFL               Global: ✗ -0.32%   Client: ✓ +2.37%
+  vs RandomCluster     Global: ✗ -0.02%   Client: ✓ +2.20%
+────────────────────────────────────────────────────────────
+Results saved to ./results/fmnist/fmnist_results.json
+
+[Plots] Generating visualizations ...
+[Plot] Convergence curve saved: ./results/fmnist/fmnist_convergence.png
+[Plot] Bar comparison saved: ./results/fmnist/fmnist_bar_comparison.png
+[Plot] Improvement chart saved: ./results/fmnist/fmnist_improvement.png
+[Plots] All plots saved to ./results/fmnist/
+
+[Done] Results → ./results/fmnist/
+       fmnist_results.json | fmnist_convergence.png | fmnist_bar_comparison.png | fmnist_improvement.png
