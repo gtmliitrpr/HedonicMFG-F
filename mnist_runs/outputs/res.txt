@@ -1,0 +1,261 @@
+(fl-bilevel) vishal1@vishal1:~/varun/ALBATROSS/10/fl_experiments$ ls
+algorithms  config.py  data.py  local_trainer.py  models.py  requirements.txt  runner.py  utils.py  visualize.py
+(fl-bilevel) vishal1@vishal1:~/varun/ALBATROSS/10/fl_experiments$ python runner.py
+
+╔══════════════════════════════════════════════════════╗
+║  MNIST Federated Learning Experiment               ║
+╠══════════════════════════════════════════════════════╣
+║  Clients        : 20                                  ║
+║  Rounds         : 50                                  ║
+║  Dirichlet α    : 0.3                                 ║
+║  Coalitions (K) : 3                                   ║
+║  Warmup rounds  : 15                                  ║
+║  Recluster int. : 10                                  ║
+║  Personal heads : True                                ║
+║  Device         : cuda                                ║
+║  Seed           : 42                                  ║
+╚══════════════════════════════════════════════════════╝
+
+[Runner] Algorithms to run: ['FedAvg', 'FedProx', 'SCAFFOLD', 'MOON', 'FedBN', 'pFedME', 'IFCA', 'CFL', 'RandomCluster', 'HedonicMFG']
+
+[Data] Loading MNIST with Dirichlet partitioning...
+Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz
+Failed to download (trying next):
+HTTP Error 404: Not Found
+
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/train-images-idx3-ubyte.gz
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/train-images-idx3-ubyte.gz to ./data/MNIST/raw/train-images-idx3-ubyte.gz
+100.0%
+Extracting ./data/MNIST/raw/train-images-idx3-ubyte.gz to ./data/MNIST/raw
+
+Downloading http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz
+Failed to download (trying next):
+HTTP Error 404: Not Found
+
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/train-labels-idx1-ubyte.gz
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/train-labels-idx1-ubyte.gz to ./data/MNIST/raw/train-labels-idx1-ubyte.gz
+100.0%
+Extracting ./data/MNIST/raw/train-labels-idx1-ubyte.gz to ./data/MNIST/raw
+
+Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz
+Failed to download (trying next):
+HTTP Error 404: Not Found
+
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/t10k-images-idx3-ubyte.gz
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/t10k-images-idx3-ubyte.gz to ./data/MNIST/raw/t10k-images-idx3-ubyte.gz
+100.0%
+Extracting ./data/MNIST/raw/t10k-images-idx3-ubyte.gz to ./data/MNIST/raw
+
+Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz
+Failed to download (trying next):
+HTTP Error 404: Not Found
+
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/t10k-labels-idx1-ubyte.gz
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/t10k-labels-idx1-ubyte.gz to ./data/MNIST/raw/t10k-labels-idx1-ubyte.gz
+100.0%
+Extracting ./data/MNIST/raw/t10k-labels-idx1-ubyte.gz to ./data/MNIST/raw
+
+
+[Data] MNIST | 20 clients | Dirichlet α=0.3
+
+Client    Samples  Classes  Distribution
+------------------------------------------------------------
+0             812        8  [  0 172   0  66  43 128  14 128 259   2]
+1            2948        9  [ 24  74 130 156 638 906   1  15 1004   0]
+2            1478       10  [111  95 1033  17  17  32   1  99  13  60]
+3            7157        9  [ 68   0 106 1474 1546  62 1383  11 2167 340]
+4            3287        8  [309 320 1520   0 498 377 182  53  28   0]
+5            2295        9  [ 69 185   5 1323   1   0 680  21   9   2]
+6            3617       10  [1005  28   2  40   4 1212   4 1234  77  11]
+7            3051        9  [290 1376 372  25 746  18 166   6   0  52]
+8            1996       10  [882   2 584   1  16 276   4  32 112  87]
+9            2372       10  [1042 192 288   5  10  33   6 426   3 367]
+10           2997       10  [805  13 160   1 582  61  20 241 608 506]
+11           5246       10  [ 90 1661 342 1303   2 335 961   3 249 300]
+12           4439        9  [220 1126 341   9   7   1 864 1866   0   5]
+13           1546        8  [ 11 409 493 149  51   0 150  66   0 217]
+14           1782       10  [263   1 167 419 645  29  49  74   4 131]
+15           1162        8  [  0  81 102  71 269  43 177   0 336  83]
+16           7571        8  [717   0   0 211 519 666 1252  23 981 3202]
+17           1704        9  [ 12 325 256  23   9 422   1 262   0 394]
+18            803        7  [  0 334  49 347   6  41   0   2   0  24]
+19           3737       10  [  5 348   8 491 233 779   3 1703   1 166]
+[Data] Total training samples: 54010 | Min/Max per client: 723/6814
+
+==================================================
+  Running: FedAvg
+==================================================
+[         FedAvg] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 32.94%  Client: 33.01%
+[         FedAvg] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 61.21%  Client: 61.11%
+[         FedAvg] Round  20/50 [████████░░░░░░░░░░░░] Global: 51.58%  Client: 52.29%
+[         FedAvg] Round  30/50 [████████████░░░░░░░░] Global: 41.27%  Client: 43.08%
+[         FedAvg] Round  40/50 [████████████████░░░░] Global: 32.68%  Client: 34.67%
+[         FedAvg] Round  50/50 [████████████████████] Global: 20.47%  Client: 23.43%
+  [FedAvg] Best global: 79.60%  Best client: 77.43%
+  ✓ FedAvg completed in 25.6 min
+
+==================================================
+  Running: FedProx
+==================================================
+[        FedProx] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 32.92%  Client: 33.30%
+[        FedProx] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 59.82%  Client: 60.25%
+[        FedProx] Round  20/50 [████████░░░░░░░░░░░░] Global: 49.13%  Client: 50.08%
+[        FedProx] Round  30/50 [████████████░░░░░░░░] Global: 40.61%  Client: 42.48%
+[        FedProx] Round  40/50 [████████████████░░░░] Global: 33.25%  Client: 35.60%
+[        FedProx] Round  50/50 [████████████████████] Global: 21.84%  Client: 24.59%
+  [FedProx] Best global: 79.02%  Best client: 76.90%
+  ✓ FedProx completed in 32.0 min
+
+==================================================
+  Running: SCAFFOLD
+==================================================
+[       SCAFFOLD] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 17.45%  Client: 16.15%
+[       SCAFFOLD] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 25.79%  Client: 27.98%
+[       SCAFFOLD] Round  20/50 [████████░░░░░░░░░░░░] Global: 11.47%  Client: 14.75%
+[       SCAFFOLD] Round  30/50 [████████████░░░░░░░░] Global: 10.32%  Client: 13.56%
+[       SCAFFOLD] Round  40/50 [████████████████░░░░] Global: 10.32%  Client: 13.56%
+[       SCAFFOLD] Round  50/50 [████████████████████] Global: 10.32%  Client: 13.56%
+  [SCAFFOLD] Best global: 51.18%  Best client: 49.81%
+  ✓ SCAFFOLD completed in 27.6 min
+
+==================================================
+  Running: MOON
+==================================================
+[           MOON] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 32.33%  Client: 32.52%
+[           MOON] Round  10/50 [████░░░░░░░░░░░░░░░░] Global:  9.74%  Client:  8.52%
+[           MOON] Round  20/50 [████████░░░░░░░░░░░░] Global: 10.32%  Client: 13.56%
+[           MOON] Round  30/50 [████████████░░░░░░░░] Global: 10.32%  Client: 13.56%
+[           MOON] Round  40/50 [████████████████░░░░] Global: 10.32%  Client: 13.56%
+[           MOON] Round  50/50 [████████████████████] Global: 10.32%  Client: 13.56%
+  [MOON] Best global: 37.14%  Best client: 36.81%
+  ✓ MOON completed in 33.2 min
+
+==================================================
+  Running: FedBN
+==================================================
+[          FedBN] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 32.46%  Client: 96.50%
+[          FedBN] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 62.49%  Client: 99.07%
+[          FedBN] Round  20/50 [████████░░░░░░░░░░░░] Global: 55.24%  Client: 99.32%
+[          FedBN] Round  30/50 [████████████░░░░░░░░] Global: 51.48%  Client: 99.27%
+[          FedBN] Round  40/50 [████████████████░░░░] Global: 47.69%  Client: 99.35%
+[          FedBN] Round  50/50 [████████████████████] Global: 48.57%  Client: 99.22%
+  [FedBN] Best global: 79.08%  Best client: 99.52%
+  ✓ FedBN completed in 27.3 min
+
+==================================================
+  Running: pFedME
+==================================================
+[         pFedME] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 26.00%  Client: 31.52%
+[         pFedME] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 31.76%  Client: 22.58%
+[         pFedME] Round  20/50 [████████░░░░░░░░░░░░] Global: 58.93%  Client: 23.57%
+[         pFedME] Round  30/50 [████████████░░░░░░░░] Global: 56.03%  Client: 21.66%
+[         pFedME] Round  40/50 [████████████████░░░░] Global: 75.05%  Client: 22.02%
+[         pFedME] Round  50/50 [████████████████████] Global: 64.88%  Client: 17.80%
+  [pFedME] Best global: 78.23%  Best client: 33.68%
+  ✓ pFedME completed in 19.4 min
+
+==================================================
+  Running: IFCA
+==================================================
+[           IFCA] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 10.36%  Client: 50.36%
+[           IFCA] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 11.69%  Client: 71.06%
+[           IFCA] Round  20/50 [████████░░░░░░░░░░░░] Global: 10.32%  Client: 57.49%
+[           IFCA] Round  30/50 [████████████░░░░░░░░] Global: 10.32%  Client: 49.01%
+[           IFCA] Round  40/50 [████████████████░░░░] Global: 10.10%  Client: 53.45%
+[           IFCA] Round  50/50 [████████████████████] Global: 10.32%  Client: 44.15%
+  [IFCA] Best global: 67.22%  Best client: 73.85%
+  ✓ IFCA completed in 36.6 min
+
+==================================================
+  Running: CFL
+==================================================
+[            CFL] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 32.94%  Client: 33.01%
+[            CFL] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 61.29%  Client: 61.85%
+[            CFL] Round  20/50 [████████░░░░░░░░░░░░] Global: 52.53%  Client: 52.81%
+[            CFL] Round  30/50 [████████████░░░░░░░░] Global: 39.14%  Client: 41.05%
+[            CFL] Round  40/50 [████████████████░░░░] Global: 32.85%  Client: 35.16%
+[            CFL] Round  50/50 [████████████████████] Global: 17.97%  Client: 20.38%
+  [CFL] Best global: 79.95%  Best client: 77.97%
+  ✓ CFL completed in 27.8 min
+
+==================================================
+  Running: Random Clustering
+==================================================
+  [RandomCluster] Warmup phase: 15 rounds
+  [RandomCluster] Initial clusters: [[0, 1, 11, 16, 9, 12, 14], [17, 8, 3, 13, 19, 7, 6], [15, 5, 18, 2, 4, 10]]
+[  RandomCluster] Round  16/50 [██████░░░░░░░░░░░░░░] Global: 55.09%  Client: 50.31%
+[  RandomCluster] Round  20/50 [████████░░░░░░░░░░░░] Global: 50.92%  Client: 45.52%
+[  RandomCluster] Round  30/50 [████████████░░░░░░░░] Global: 39.07%  Client: 35.98%
+[  RandomCluster] Round  40/50 [████████████████░░░░] Global: 32.60%  Client: 36.63%
+[  RandomCluster] Round  50/50 [████████████████████] Global: 20.92%  Client: 32.18%
+  [RandomCluster] Best global: 55.09%  Best client: 50.31%
+  ✓ RandomCluster completed in 26.2 min
+
+==================================================
+  Running: HedonicMFG (Improved)
+==================================================
+
+  [Phase 1] Warmup (15 rounds) ...
+  [Phase 1] Warmup complete. Global acc: 55.46%
+
+  [Phase 2] Initial coalition formation (K=3)...
+  Coalitions: [[1, 3, 7, 10, 12, 14, 15], [2, 4, 8, 13, 16, 17], [0, 5, 6, 9, 11, 18, 19]]
+
+  [Phase 3] Clustered training with MFG (35 rounds)...
+[     HedonicMFG] Round  16/50 [██████░░░░░░░░░░░░░░] Global: 54.50%  Client: 57.50%
+[     HedonicMFG] Round  20/50 [████████░░░░░░░░░░░░] Global: 49.56%  Client: 51.19%
+  [Recluster] Round 25 — avg within-sim: 0.026 → new coalitions: [[1, 3, 7, 15, 8, 0, 11], [2, 4, 13, 16, 17], [10, 12, 14, 5, 6, 9, 18, 19]]
+[     HedonicMFG] Round  30/50 [████████████░░░░░░░░] Global: 44.22%  Client: 53.36%
+  [Recluster] Round 35 — avg within-sim: 0.017 → new coalitions: [[1, 7, 15, 8, 0, 13, 10], [11, 2, 4, 16, 17], [3, 12, 14, 5, 6, 9, 18, 19]]
+[     HedonicMFG] Round  40/50 [████████████████░░░░] Global: 38.26%  Client: 49.30%
+  [Recluster] Round 45 — avg within-sim: 0.015 → new coalitions: [[1, 7, 15, 8, 0, 13, 2, 4], [11, 16, 17, 5, 18], [10, 3, 12, 14, 6, 9, 19]]
+[     HedonicMFG] Round  50/50 [████████████████████] Global: 29.33%  Client: 48.37%
+
+  [HedonicMFG] Best global: 54.50%  Best client: 57.50%
+  ✓ HedonicMFG completed in 37.0 min
+
+
+========================================================================
+  FINAL RESULTS — MNIST (Dirichlet α=0.3)
+========================================================================
+
+========================================================================
+Algorithm             Best Global  Final Global  Best Client  Final Client
+========================================================================
+FedAvg                     79.60%         20.47%        77.43%         23.43%
+FedProx                    79.02%         21.84%        76.90%         24.59%
+SCAFFOLD                   51.18%         10.32%        49.81%         13.56%
+MOON                       37.14%         10.32%        36.81%         13.56%
+FedBN                      79.08%         48.57%        99.52%         99.22%
+pFedME                     78.23%         64.88%        33.68%         17.80%
+IFCA                       67.22%         10.32%        73.85%         44.15%
+CFL                        79.95%         17.97%        77.97%         20.38%
+RandomCluster              55.09%         20.92%        50.31%         32.18%
+HedonicMFG                 54.50%         29.33%        57.50%         48.37%
+========================================================================
+
+  Total experiment time: 292.6 minutes
+
+────────────────────────────────────────────────────────────
+  HedonicMFG vs Baselines (Best Global / Best Client):
+────────────────────────────────────────────────────────────
+  vs FedAvg            Global: ✗ -25.10%   Client: ✗ -19.93%
+  vs FedProx           Global: ✗ -24.52%   Client: ✗ -19.40%
+  vs SCAFFOLD          Global: ✓ +3.32%   Client: ✓ +7.69%
+  vs MOON              Global: ✓ +17.36%   Client: ✓ +20.69%
+  vs FedBN             Global: ✗ -24.58%   Client: ✗ -42.02%
+  vs pFedME            Global: ✗ -23.73%   Client: ✓ +23.82%
+  vs IFCA              Global: ✗ -12.72%   Client: ✗ -16.35%
+  vs CFL               Global: ✗ -25.45%   Client: ✗ -20.47%
+  vs RandomCluster     Global: ✗ -0.59%   Client: ✓ +7.19%
+────────────────────────────────────────────────────────────
+Results saved to ./results/mnist/mnist_results.json
+
+[Plots] Generating visualizations...
+[Plot] Convergence curve saved: ./results/mnist/mnist_convergence.png
+[Plot] Bar comparison saved: ./results/mnist/mnist_bar_comparison.png
+[Plot] Improvement chart saved: ./results/mnist/mnist_improvement.png
+[Plots] All plots saved to ./results/mnist/
+
+[Done] Results saved to: ./results/mnist/
+       Files: mnist_results.json | mnist_convergence.png | mnist_bar_comparison.png | mnist_improvement.png
