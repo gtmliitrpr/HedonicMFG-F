@@ -1,0 +1,238 @@
+╔══════════════════════════════════════════════════════╗
+║  IMDB Federated Learning Experiment               ║
+╠══════════════════════════════════════════════════════╣
+║  Clients        : 20                                  ║
+║  Rounds         : 50                                  ║
+║  Dirichlet α    : 0.3                                 ║
+║  Coalitions (K) : 3                                   ║
+║  Warmup rounds  : 15                                  ║
+║  Recluster int. : 15                                  ║
+║  λ_fair (MFG)   : 0.7                                 ║
+║  Max seq len    : 256                                 ║
+║  Vocab size     : 20000                               ║
+║  Personal heads : True                                ║
+║  Device         : cuda                                ║
+║  Seed           : 42                                  ║
+╚══════════════════════════════════════════════════════╝
+
+[Runner] Loading IMDB data ...
+[IMDB] Loaded 50000 samples | Positive: 25000 | Negative: 25000
+[IMDB] Building vocabulary (size=20000)...
+[IMDB] Vocabulary built: 20000 tokens
+[IMDB] Tokenizing (max_len=256)...
+
+[Data] IMDB | 20 clients | Dirichlet α=0.3
+
+Client    Samples    %Pos  Skew
+--------------------------------------
+0            1033    9.8%  HIGH
+1             610    3.3%  HIGH
+2            1440   31.2%  HIGH
+3            1403   88.0%  HIGH
+4             813   92.5%  HIGH
+5            2932   98.0%  HIGH
+6             730    0.1%  HIGH
+7            1984   22.3%  HIGH
+8            1160   33.5%  HIGH
+9              55   76.4%  HIGH
+10            815    0.0%  HIGH
+11            830   98.9%  HIGH
+12           2568    0.0%  HIGH
+13            140   72.9%  HIGH
+14           2505   72.4%  HIGH
+15           2481    0.3%  HIGH
+16           1025  100.0%  HIGH
+17           1392   97.0%  HIGH
+18             13   92.3%  HIGH
+19           1071   99.3%  HIGH
+
+  Global pos rate: 54.4%  Std: 40.8%
+[Data] Total train: 22501 | Test: 25000 | Vocab: 20000 | Min/Max per client: 8/2639
+
+[Runner] Algorithms: ['FedAvg', 'FedProx', 'SCAFFOLD', 'MOON', 'FedBN', 'pFedME', 'IFCA', 'CFL', 'RandomCluster', 'HedonicMFG']
+
+==================================================
+  Running: FedAvg [IMDB]
+==================================================
+[         FedAvg] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 49.99%  Client: 44.68%
+[         FedAvg] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 69.64%  Client: 72.22%
+[         FedAvg] Round  20/50 [████████░░░░░░░░░░░░] Global: 78.24%  Client: 78.47%
+[         FedAvg] Round  30/50 [████████████░░░░░░░░] Global: 81.61%  Client: 82.93%
+[         FedAvg] Round  40/50 [████████████████░░░░] Global: 83.08%  Client: 82.76%
+[         FedAvg] Round  50/50 [████████████████████] Global: 82.82%  Client: 82.62%
+  [FedAvg] Best global: 83.18%  Best client: 83.75%
+Results saved to ./results/imdb/imdb_results.json
+  ✓ FedAvg done in 14.3 min
+
+==================================================
+  Running: FedProx [IMDB]
+==================================================
+[        FedProx] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 49.99%  Client: 44.68%
+[        FedProx] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 63.53%  Client: 63.74%
+[        FedProx] Round  20/50 [████████░░░░░░░░░░░░] Global: 70.81%  Client: 72.63%
+[        FedProx] Round  30/50 [████████████░░░░░░░░] Global: 77.96%  Client: 77.77%
+[        FedProx] Round  40/50 [████████████████░░░░] Global: 81.98%  Client: 83.34%
+[        FedProx] Round  50/50 [████████████████████] Global: 84.07%  Client: 86.34%
+  [FedProx] Best global: 84.07%  Best client: 86.38%
+Results saved to ./results/imdb/imdb_results.json
+  ✓ FedProx done in 14.4 min
+
+==================================================
+  Running: SCAFFOLD [IMDB]
+==================================================
+[       SCAFFOLD] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 50.00%  Client: 55.32%
+[       SCAFFOLD] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 50.00%  Client: 55.32%
+[       SCAFFOLD] Round  20/50 [████████░░░░░░░░░░░░] Global: 50.00%  Client: 55.32%
+[       SCAFFOLD] Round  30/50 [████████████░░░░░░░░] Global: 50.00%  Client: 55.32%
+[       SCAFFOLD] Round  40/50 [████████████████░░░░] Global: 50.00%  Client: 55.32%
+[       SCAFFOLD] Round  50/50 [████████████████████] Global: 50.00%  Client: 55.32%
+  [SCAFFOLD] Best global: 50.00%  Best client: 55.32%
+Results saved to ./results/imdb/imdb_results.json
+  ✓ SCAFFOLD done in 14.3 min
+
+==================================================
+  Running: MOON [IMDB]
+==================================================
+[           MOON] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 49.99%  Client: 44.68%
+[           MOON] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 50.00%  Client: 44.68%
+[           MOON] Round  20/50 [████████░░░░░░░░░░░░] Global: 50.00%  Client: 44.68%
+[           MOON] Round  30/50 [████████████░░░░░░░░] Global: 50.00%  Client: 44.68%
+[           MOON] Round  40/50 [████████████████░░░░] Global: 50.00%  Client: 44.68%
+[           MOON] Round  50/50 [████████████████████] Global: 50.00%  Client: 44.68%
+  [MOON] Best global: 50.32%  Best client: 44.94%
+Results saved to ./results/imdb/imdb_results.json
+  ✓ MOON done in 19.2 min
+
+==================================================
+  Running: FedBN [IMDB]
+==================================================
+  Note: TextCNN has no BN layers — FedBN equivalent to FedAvg here
+[          FedBN] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 49.99%  Client: 44.68%
+[          FedBN] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 69.67%  Client: 71.75%
+[          FedBN] Round  20/50 [████████░░░░░░░░░░░░] Global: 78.18%  Client: 78.41%
+[          FedBN] Round  30/50 [████████████░░░░░░░░] Global: 81.65%  Client: 83.13%
+[          FedBN] Round  40/50 [████████████████░░░░] Global: 83.06%  Client: 82.72%
+[          FedBN] Round  50/50 [████████████████████] Global: 82.81%  Client: 82.63%
+  [FedBN] Best global: 83.23%  Best client: 83.61%
+Results saved to ./results/imdb/imdb_results.json
+  ✓ FedBN done in 14.3 min
+
+==================================================
+  Running: pFedME [IMDB]
+==================================================
+[         pFedME] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 50.00%  Client: 57.42%
+[         pFedME] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 50.00%  Client: 86.38%
+[         pFedME] Round  20/50 [████████░░░░░░░░░░░░] Global: 57.48%  Client: 90.04%
+[         pFedME] Round  30/50 [████████████░░░░░░░░] Global: 50.00%  Client: 80.13%
+[         pFedME] Round  40/50 [████████████████░░░░] Global: 63.96%  Client: 90.23%
+[         pFedME] Round  50/50 [████████████████████] Global: 50.00%  Client: 44.73%
+  [pFedME] Best global: 70.76%  Best client: 91.47%
+Results saved to ./results/imdb/imdb_results.json
+  ✓ pFedME done in 12.8 min
+
+==================================================
+  Running: IFCA [IMDB]
+==================================================
+[           IFCA] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 50.00%  Client: 90.04%
+[           IFCA] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 50.00%  Client: 89.93%
+[           IFCA] Round  20/50 [████████░░░░░░░░░░░░] Global: 68.99%  Client: 92.48%
+[           IFCA] Round  30/50 [████████████░░░░░░░░] Global: 59.91%  Client: 91.33%
+[           IFCA] Round  40/50 [████████████████░░░░] Global: 58.66%  Client: 92.99%
+[           IFCA] Round  50/50 [████████████████████] Global: 54.11%  Client: 92.98%
+  [IFCA] Best global: 76.22%  Best client: 93.47%
+Results saved to ./results/imdb/imdb_results.json
+  ✓ IFCA done in 14.7 min
+
+==================================================
+  Running: CFL [IMDB]
+==================================================
+[            CFL] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 49.99%  Client: 44.68%
+[            CFL] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 62.66%  Client: 65.54%
+[            CFL] Round  20/50 [████████░░░░░░░░░░░░] Global: 71.28%  Client: 70.68%
+[            CFL] Round  30/50 [████████████░░░░░░░░] Global: 73.23%  Client: 72.80%
+[            CFL] Round  40/50 [████████████████░░░░] Global: 72.88%  Client: 73.45%
+[            CFL] Round  50/50 [████████████████████] Global: 74.89%  Client: 74.66%
+  [CFL] Best global: 75.61%  Best client: 74.75%
+Results saved to ./results/imdb/imdb_results.json
+  ✓ CFL done in 14.2 min
+
+==================================================
+  Running: RandomCluster [IMDB]
+==================================================
+  [RandomCluster] Warmup: 15 rounds
+  [RandomCluster] Initial clusters: [[0, 1, 11, 16, 9, 12, 14], [17, 8, 3, 13, 19, 7, 6], [15, 5, 18, 2, 4, 10]]
+[  RandomCluster] Round  16/50 [██████░░░░░░░░░░░░░░] Global: 75.77%  Client: 63.01%
+[  RandomCluster] Round  20/50 [████████░░░░░░░░░░░░] Global: 77.57%  Client: 71.03%
+[  RandomCluster] Round  30/50 [████████████░░░░░░░░] Global: 80.74%  Client: 62.88%
+[  RandomCluster] Round  40/50 [████████████████░░░░] Global: 80.22%  Client: 68.58%
+[  RandomCluster] Round  50/50 [████████████████████] Global: 81.81%  Client: 76.02%
+  [RandomCluster] Best global: 81.82%  Best client: 76.92%
+Results saved to ./results/imdb/imdb_results.json
+  ✓ RandomCluster done in 13.8 min
+
+==================================================
+  Running: HedonicMFG [IMDB — Improved]
+==================================================
+
+  [Phase 1] Warmup (15 rounds) ...
+  [Phase 1] Warmup complete. Global acc: 74.76%
+
+  [Phase 2] Initial coalition formation (K=3)...
+  Coalitions: [[0, 1, 9, 11, 12, 14, 16], [3, 6, 7, 8, 13, 17, 19], [2, 4, 5, 10, 15, 18]]
+  Sizes: [7, 7, 6]
+
+  [Phase 3] Clustered training with MFG (35 rounds)...
+[     HedonicMFG] Round  16/50 [██████░░░░░░░░░░░░░░] Global: 75.29%  Client: 82.41%
+[     HedonicMFG] Round  20/50 [████████░░░░░░░░░░░░] Global: 77.16%  Client: 86.46%
+[     HedonicMFG] Round  30/50 [████████████░░░░░░░░] Global: 80.73%  Client: 80.90%
+[     HedonicMFG] Round  40/50 [████████████████░░░░] Global: 81.89%  Client: 77.76%
+[     HedonicMFG] Round  50/50 [████████████████████] Global: 82.10%  Client: 74.88%
+
+  [HedonicMFG] Best global: 82.12%  Best client: 86.82%
+Results saved to ./results/imdb/imdb_results.json
+  ✓ HedonicMFG done in 15.6 min
+
+
+========================================================================
+  FINAL RESULTS — IMDB (α=0.3)
+========================================================================
+
+========================================================================
+Algorithm             Best Global  Final Global  Best Client  Final Client
+========================================================================
+FedAvg                     83.18%         82.82%        83.75%         82.62%
+FedProx                    84.07%         84.07%        86.38%         86.34%
+SCAFFOLD                   50.00%         50.00%        55.32%         55.32%
+MOON                       50.32%         50.00%        44.94%         44.68%
+FedBN                      83.23%         82.81%        83.61%         82.63%
+pFedME                     70.76%         50.00%        91.47%         44.73%
+IFCA                       76.22%         54.11%        93.47%         92.98%
+CFL                        75.61%         74.89%        74.75%         74.66%
+RandomCluster              81.82%         81.81%        76.92%         76.02%
+HedonicMFG                 82.12%         82.10%        86.82%         74.88%
+========================================================================
+
+  Total time: 147.7 min
+
+────────────────────────────────────────────────────────────
+  HedonicMFG vs Baselines:
+────────────────────────────────────────────────────────────
+  vs FedAvg            Global: ✗ -1.06%   Client: ✓ +3.07%
+  vs FedProx           Global: ✗ -1.96%   Client: ✓ +0.44%
+  vs SCAFFOLD          Global: ✓ +32.12%   Client: ✓ +31.50%
+  vs MOON              Global: ✓ +31.80%   Client: ✓ +41.88%
+  vs FedBN             Global: ✗ -1.11%   Client: ✓ +3.21%
+  vs pFedME            Global: ✓ +11.36%   Client: ✗ -4.65%
+  vs IFCA              Global: ✓ +5.90%   Client: ✗ -6.65%
+  vs CFL               Global: ✓ +6.51%   Client: ✓ +12.07%
+  vs RandomCluster     Global: ✓ +0.29%   Client: ✓ +9.90%
+────────────────────────────────────────────────────────────
+Results saved to ./results/imdb/imdb_results.json
+
+[Plots] Generating visualizations ...
+[Plot] Convergence curve saved: ./results/imdb/imdb_convergence.png
+[Plot] Bar comparison saved: ./results/imdb/imdb_bar_comparison.png
+[Plot] Improvement chart saved: ./results/imdb/imdb_improvement.png
+[Plots] All plots saved to ./results/imdb/
+
+[Done] Results → ./results/imdb/
