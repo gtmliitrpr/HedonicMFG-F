@@ -1,0 +1,195 @@
+vishal1@vishal1:~/varun/ALBATROSS/1.4/ablation_study$ python runner_mnist.py --alpha 0.5
+
+╔══════════════════════════════════════════════════════╗
+║  MNIST Federated Learning Experiment               ║
+╠══════════════════════════════════════════════════════╣
+║  Clients        : 20                                  ║
+║  Rounds         : 50                                  ║
+║  Dirichlet α    : 0.5                                 ║
+║  Coalitions (K) : 3                                   ║
+║  Warmup rounds  : 15                                  ║
+║  Device         : cuda                                ║
+║  Seed           : 42                                  ║
+╚══════════════════════════════════════════════════════╝
+
+[Runner] Loading MNIST data (α=0.5) ...
+
+[Data] MNIST | 20 clients | Dirichlet α=0.5
+
+Client    Samples  Classes  Distribution
+------------------------------------------------------------
+0            1171        9  [  6 215   0 133  88 153  49 183 326  18]
+1            3099       10  [ 69 128 181 229 566 782   8 156 978   2]
+2            1647       10  [170 147 915  59  49  97  11  41  42 116]
+3            5462       10  [328   4 160   5 1188 380 1209  61 1725 402]
+4            4965       10  [129 350 1253 1333 451   4 227 1151  66   1]
+5            2992       10  [900 227  25  98  11 981 673  29  32  16]
+6            1203       10  [313  70  16  76  21  45  24 474 122  42]
+7            3981       10  [805 1205 375   8 648 290 214 287   4 145]
+8            2275       10  [928  11 562  30  49  65  23  19 157 431]
+9            3627       10  [744 232 306   9  36  96  29 1584  19 572]
+10           2980       10  [151  46 204 509 521 343  61 122 663 360]
+11           4715       10  [259 1394 350 1318  13   8 900 132 315  26]
+12           2895       10  [ 42 1029 348 348  29   2 824   1   1 271]
+13           1866       10  [293 438 483  40  98  60 201  64   2 187]
+14           1818       10  [  3   9 210 221 570 235 102 308  19 141]
+15           4883       10  [672 134 157 515 273  78 224  14 408 2408]
+16           5289        9  [ 45   7   0 139 469 613 1117 1477 961 461]
+17           2120        9  [  6 355 279 284 700 419   1  10   0  66]
+18           1563       10  [ 24 363 102 705  34  75   2  32   5 221]
+19           1449       10  [ 36 378  32  72  28 695  19 120   6  63]
+[Data] Total training samples: 54009 | Min/Max per client: 1054/4916
+
+[Runner] Starting FedAvg ...
+
+==================================================
+  Running: FedAvg [MNIST]
+==================================================
+[         FedAvg] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 86.36%  Client: 85.75%
+[         FedAvg] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 98.47%  Client: 98.48%
+[         FedAvg] Round  20/50 [████████░░░░░░░░░░░░] Global: 98.65%  Client: 98.64%
+[         FedAvg] Round  30/50 [████████████░░░░░░░░] Global: 98.56%  Client: 98.61%
+[         FedAvg] Round  40/50 [████████████████░░░░] Global: 98.35%  Client: 98.37%
+[         FedAvg] Round  50/50 [████████████████████] Global: 98.17%  Client: 98.19%
+  [FedAvg] Best global: 98.73%  Best client: 98.74%
+  ✓ FedAvg done in 55.0 min  → saved to ./results/mnist/alpha_05/results.json
+
+[Runner] Starting HedonicMFG ...
+
+==================================================
+  Running: HedonicMFG [MNIST]
+==================================================
+
+  [Phase 1] Warmup (15 rounds) ...
+  [Phase 1] Warmup complete. Global acc: 98.49%
+
+  [Phase 2] Initial coalition formation (K=3)...
+  Coalitions: [[0, 1, 9, 11, 12, 14, 16], [3, 6, 7, 8, 13, 17], [2, 4, 5, 10, 15, 18, 19]]
+  Sizes: [7, 6, 7]
+
+  [Phase 3] Clustered training with MFG (35 rounds)...
+[     HedonicMFG] Round  16/50 [██████░░░░░░░░░░░░░░] Global: 98.56%  Client: 98.65%
+[     HedonicMFG] Round  20/50 [████████░░░░░░░░░░░░] Global: 98.65%  Client: 98.40%
+[     HedonicMFG] Round  30/50 [████████████░░░░░░░░] Global: 98.24%  Client: 98.11%
+[     HedonicMFG] Round  40/50 [████████████████░░░░] Global: 98.33%  Client: 98.07%
+[     HedonicMFG] Round  50/50 [████████████████████] Global: 98.21%  Client: 97.75%
+
+  [HedonicMFG] Best global: 98.65%  Best client: 98.65%
+  ✓ HedonicMFG done in 72.5 min  → saved to ./results/mnist/alpha_05/results.json
+
+=================================================================
+  RESULTS — MNIST  α=0.5
+=================================================================
+
+========================================================================
+Algorithm             Best Global  Final Global  Best Client  Final Client
+========================================================================
+FedAvg                     98.73%         98.17%        98.74%         98.19%
+HedonicMFG                 98.65%         98.21%        98.65%         97.75%
+========================================================================
+  Total time: 127.4 min
+
+  HedonicMFG vs FedAvg:
+  Global Δ: ✗ -0.08%   Client Δ: ✗ -0.09%
+[Plot] Convergence saved: ./results/mnist/alpha_05/mnist_alpha05_convergence.png
+[Plot] Bar chart saved: ./results/mnist/alpha_05/mnist_alpha05_bar.png
+
+[Done] α=0.5 results → ./results/mnist/alpha_05/
+       Run 'python combine_plots.py --datasets mnist' when all alphas are done.1~vishal1@vishal1:~/varun/ALBATROSS/1.4/ablation_study$ python runner_mnist.py --alpha 0.5
+
+╔══════════════════════════════════════════════════════╗
+║  MNIST Federated Learning Experiment               ║
+╠══════════════════════════════════════════════════════╣
+║  Clients        : 20                                  ║
+║  Rounds         : 50                                  ║
+║  Dirichlet α    : 0.5                                 ║
+║  Coalitions (K) : 3                                   ║
+║  Warmup rounds  : 15                                  ║
+║  Device         : cuda                                ║
+║  Seed           : 42                                  ║
+╚══════════════════════════════════════════════════════╝
+
+[Runner] Loading MNIST data (α=0.5) ...
+
+[Data] MNIST | 20 clients | Dirichlet α=0.5
+
+Client    Samples  Classes  Distribution
+------------------------------------------------------------
+0            1171        9  [  6 215   0 133  88 153  49 183 326  18]
+1            3099       10  [ 69 128 181 229 566 782   8 156 978   2]
+2            1647       10  [170 147 915  59  49  97  11  41  42 116]
+3            5462       10  [328   4 160   5 1188 380 1209  61 1725 402]
+4            4965       10  [129 350 1253 1333 451   4 227 1151  66   1]
+5            2992       10  [900 227  25  98  11 981 673  29  32  16]
+6            1203       10  [313  70  16  76  21  45  24 474 122  42]
+7            3981       10  [805 1205 375   8 648 290 214 287   4 145]
+8            2275       10  [928  11 562  30  49  65  23  19 157 431]
+9            3627       10  [744 232 306   9  36  96  29 1584  19 572]
+10           2980       10  [151  46 204 509 521 343  61 122 663 360]
+11           4715       10  [259 1394 350 1318  13   8 900 132 315  26]
+12           2895       10  [ 42 1029 348 348  29   2 824   1   1 271]
+13           1866       10  [293 438 483  40  98  60 201  64   2 187]
+14           1818       10  [  3   9 210 221 570 235 102 308  19 141]
+15           4883       10  [672 134 157 515 273  78 224  14 408 2408]
+16           5289        9  [ 45   7   0 139 469 613 1117 1477 961 461]
+17           2120        9  [  6 355 279 284 700 419   1  10   0  66]
+18           1563       10  [ 24 363 102 705  34  75   2  32   5 221]
+19           1449       10  [ 36 378  32  72  28 695  19 120   6  63]
+[Data] Total training samples: 54009 | Min/Max per client: 1054/4916
+
+[Runner] Starting FedAvg ...
+
+==================================================
+  Running: FedAvg [MNIST]
+==================================================
+[         FedAvg] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 86.36%  Client: 85.75%
+[         FedAvg] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 98.47%  Client: 98.48%
+[         FedAvg] Round  20/50 [████████░░░░░░░░░░░░] Global: 98.65%  Client: 98.64%
+[         FedAvg] Round  30/50 [████████████░░░░░░░░] Global: 98.56%  Client: 98.61%
+[         FedAvg] Round  40/50 [████████████████░░░░] Global: 98.35%  Client: 98.37%
+[         FedAvg] Round  50/50 [████████████████████] Global: 98.17%  Client: 98.19%
+  [FedAvg] Best global: 98.73%  Best client: 98.74%
+  ✓ FedAvg done in 55.0 min  → saved to ./results/mnist/alpha_05/results.json
+
+[Runner] Starting HedonicMFG ...
+
+==================================================
+  Running: HedonicMFG [MNIST]
+==================================================
+
+  [Phase 1] Warmup (15 rounds) ...
+  [Phase 1] Warmup complete. Global acc: 98.49%
+
+  [Phase 2] Initial coalition formation (K=3)...
+  Coalitions: [[0, 1, 9, 11, 12, 14, 16], [3, 6, 7, 8, 13, 17], [2, 4, 5, 10, 15, 18, 19]]
+  Sizes: [7, 6, 7]
+
+  [Phase 3] Clustered training with MFG (35 rounds)...
+[     HedonicMFG] Round  16/50 [██████░░░░░░░░░░░░░░] Global: 98.56%  Client: 98.65%
+[     HedonicMFG] Round  20/50 [████████░░░░░░░░░░░░] Global: 98.65%  Client: 98.40%
+[     HedonicMFG] Round  30/50 [████████████░░░░░░░░] Global: 98.24%  Client: 98.11%
+[     HedonicMFG] Round  40/50 [████████████████░░░░] Global: 98.33%  Client: 98.07%
+[     HedonicMFG] Round  50/50 [████████████████████] Global: 98.21%  Client: 97.75%
+
+  [HedonicMFG] Best global: 98.65%  Best client: 98.65%
+  ✓ HedonicMFG done in 72.5 min  → saved to ./results/mnist/alpha_05/results.json
+
+=================================================================
+  RESULTS — MNIST  α=0.5
+=================================================================
+
+========================================================================
+Algorithm             Best Global  Final Global  Best Client  Final Client
+========================================================================
+FedAvg                     98.73%         98.17%        98.74%         98.19%
+HedonicMFG                 98.65%         98.21%        98.65%         97.75%
+========================================================================
+  Total time: 127.4 min
+
+  HedonicMFG vs FedAvg:
+  Global Δ: ✗ -0.08%   Client Δ: ✗ -0.09%
+[Plot] Convergence saved: ./results/mnist/alpha_05/mnist_alpha05_convergence.png
+[Plot] Bar chart saved: ./results/mnist/alpha_05/mnist_alpha05_bar.png
+
+[Done] α=0.5 results → ./results/mnist/alpha_05/
+       Run 'python combine_plots.py --datasets mnist' when all alphas are done.

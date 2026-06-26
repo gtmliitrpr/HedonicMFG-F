@@ -1,0 +1,99 @@
+(fl-bilevel) vishal1@vishal1:~/varun/ALBATROSS/1.4/ablation_study$ python combine_plots.py
+
+╔════════════════════════════════════════════════════╗
+║  combine_plots.py — Ablation Plot Generator       ║
+╠════════════════════════════════════════════════════╣
+║  Datasets : ['mnist', 'fmnist']                      ║
+║  Alphas   : [0.05, 0.1, 0.3, 0.5, 1.0]               ║
+║  Base dir : ./results                                ║
+╚════════════════════════════════════════════════════╝
+
+
+[Load] MNIST results from ./results/mnist/
+  [Load] mnist α=0.05: found ['FedAvg', 'HedonicMFG']
+  [Load] mnist α=0.1: found ['FedAvg', 'HedonicMFG']
+  [Load] mnist α=0.3: found ['FedAvg', 'HedonicMFG']
+  [Load] mnist α=0.5: found ['FedAvg', 'HedonicMFG']
+  [Load] mnist α=1.0: found ['FedAvg', 'HedonicMFG']
+
+[Plots] Generating MNIST plots ...
+[Plot] ./results/mnist/mnist_fedavg_convergence_per_alpha.png
+[Plot] ./results/mnist/mnist_hedonicmfg_convergence_per_alpha.png
+[Plot] ./results/mnist/mnist_accuracy_vs_alpha.png
+[Plot] ./results/mnist/mnist_gain_vs_alpha.png
+
+[Load] FMNIST results from ./results/fmnist/
+  [Load] fmnist α=0.05: found ['FedAvg', 'HedonicMFG']
+  [Load] fmnist α=0.1: found ['FedAvg', 'HedonicMFG']
+  [Load] fmnist α=0.3: found ['FedAvg', 'HedonicMFG']
+  [Load] fmnist α=0.5: found ['FedAvg', 'HedonicMFG']
+  [Load] fmnist α=1.0: found ['FedAvg', 'HedonicMFG']
+
+[Plots] Generating FMNIST plots ...
+[Plot] ./results/fmnist/fmnist_fedavg_convergence_per_alpha.png
+[Plot] ./results/fmnist/fmnist_hedonicmfg_convergence_per_alpha.png
+[Plot] ./results/fmnist/fmnist_accuracy_vs_alpha.png
+[Plot] ./results/fmnist/fmnist_gain_vs_alpha.png
+
+[Plots] Generating combined summary ...
+[Plot] Combined summary → ./results/combined_summary.png
+
+===========================================================================
+  MNIST — Ablation Summary
+===========================================================================
+  α      Algorithm       Best Global  Final Global  Best Client  Final Client
+  -----------------------------------------------------------------------
+  0.05   FedAvg               97.65%         92.98%        97.71%         94.50%
+  0.05   HedonicMFG           97.05%         93.10%        99.23%         90.84%
+  0.1    FedAvg               96.62%         87.70%        96.02%         85.79%
+  0.1    HedonicMFG           97.04%         92.53%        95.32%         88.77%
+  0.3    FedAvg               98.41%         97.61%        98.38%         97.63%
+  0.3    HedonicMFG           98.42%         97.76%        98.35%         97.35%
+  0.5    FedAvg               98.73%         98.17%        98.74%         98.19%
+  0.5    HedonicMFG           98.65%         98.21%        98.65%         97.75%
+  1.0    FedAvg               98.66%         98.00%        98.34%         97.79%
+  1.0    HedonicMFG           98.53%         98.08%        98.04%         97.39%
+
+  HedonicMFG Gain over FedAvg:
+  α          ΔGlobal     ΔClient
+  0.05    ✗   -0.60%   ✓   +1.52%
+  0.1     ✓   +0.42%   ✗   -0.70%
+  0.3     ✓   +0.01%   ✗   -0.03%
+  0.5     ✗   -0.08%   ✗   -0.09%
+  1.0     ✗   -0.13%   ✗   -0.30%
+===========================================================================
+
+===========================================================================
+  FashionMNIST — Ablation Summary
+===========================================================================
+  α      Algorithm       Best Global  Final Global  Best Client  Final Client
+  -----------------------------------------------------------------------
+  0.05   FedAvg               85.11%         84.01%        84.60%         83.47%
+  0.05   HedonicMFG           80.10%         78.04%        90.46%         88.99%
+  0.1    FedAvg               87.62%         87.62%        88.88%         88.73%
+  0.1    HedonicMFG           86.28%         86.18%        92.43%         92.43%
+  0.3    FedAvg               88.83%         88.83%        88.69%         88.69%
+  0.3    HedonicMFG           88.40%         88.40%        90.35%         89.81%
+  0.5    FedAvg               89.01%         88.91%        89.28%         89.28%
+  0.5    HedonicMFG           88.60%         88.53%        91.48%         90.81%
+  1.0    FedAvg               89.70%         89.55%        91.04%         90.70%
+  1.0    HedonicMFG           89.48%         89.48%        90.68%         90.48%
+
+  HedonicMFG Gain over FedAvg:
+  α          ΔGlobal     ΔClient
+  0.05    ✗   -5.01%   ✓   +5.86%
+  0.1     ✗   -1.34%   ✓   +3.54%
+  0.3     ✗   -0.43%   ✓   +1.66%
+  0.5     ✗   -0.41%   ✓   +2.20%
+  1.0     ✗   -0.22%   ✗   -0.36%
+===========================================================================
+
+[Done] All plots saved to ./results/
+       Files generated:
+         ./results/mnist/mnist_convergence_per_alpha_*.png
+         ./results/mnist/mnist_accuracy_vs_alpha.png
+         ./results/mnist/mnist_gain_vs_alpha.png
+         ./results/fmnist/fmnist_convergence_per_alpha_*.png
+         ./results/fmnist/fmnist_accuracy_vs_alpha.png
+         ./results/fmnist/fmnist_gain_vs_alpha.png
+         ./results/combined_summary.png

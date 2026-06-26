@@ -1,0 +1,124 @@
+(fl-bilevel) vishal1@vishal1:~/varun/ALBATROSS/1.4/ablation_study$ python runner_fmnist.py --alpha 0.05
+
+╔══════════════════════════════════════════════════════╗
+║  FashionMNIST Federated Learning Experiment        ║
+╠══════════════════════════════════════════════════════╣
+║  Clients        : 20                                  ║
+║  Rounds         : 50                                  ║
+║  Dirichlet α    : 0.05                                ║
+║  Coalitions (K) : 3                                   ║
+║  Warmup rounds  : 15                                  ║
+║  Recluster int. : 10                                  ║
+║  Device         : cuda                                ║
+║  Seed           : 42                                  ║
+╚══════════════════════════════════════════════════════╝
+
+[Runner] Loading FashionMNIST data (α=0.05) ...
+Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-images-idx3-ubyte.gz
+Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-images-idx3-ubyte.gz to ./data/FashionMNIST/raw/train-images-idx3-ubyte.gz
+100.0%
+Extracting ./data/FashionMNIST/raw/train-images-idx3-ubyte.gz to ./data/FashionMNIST/raw
+
+Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-labels-idx1-ubyte.gz
+Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-labels-idx1-ubyte.gz to ./data/FashionMNIST/raw/train-labels-idx1-ubyte.gz
+100.0%
+Extracting ./data/FashionMNIST/raw/train-labels-idx1-ubyte.gz to ./data/FashionMNIST/raw
+
+Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-images-idx3-ubyte.gz
+Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-images-idx3-ubyte.gz to ./data/FashionMNIST/raw/t10k-images-idx3-ubyte.gz
+100.0%
+Extracting ./data/FashionMNIST/raw/t10k-images-idx3-ubyte.gz to ./data/FashionMNIST/raw
+
+Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-labels-idx1-ubyte.gz
+Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-labels-idx1-ubyte.gz to ./data/FashionMNIST/raw/t10k-labels-idx1-ubyte.gz
+100.0%
+Extracting ./data/FashionMNIST/raw/t10k-labels-idx1-ubyte.gz to ./data/FashionMNIST/raw
+
+
+[Data] FashionMNIST | 20 clients | Dirichlet alpha=0.05
+
+Client    Samples  Classes  Dominant class
+-------------------------------------------------------
+0              72        2  Bag
+1             930        5  Pullover
+2            2068        5  Trouser
+3            4671        5  Trouser
+4             158        5  T-shirt
+5              10        3  Sneaker
+6             443        4  Trouser
+7            2851        4  T-shirt
+8            5537        4  Shirt
+9              29        2  Pullover
+10           5162        3  Sandal
+11            267        4  Sandal
+12            750        5  Shirt
+13          10762        5  Bag
+14            183        3  Coat
+15           5713        2  Sneaker
+16           8367        6  Coat
+17           6301        6  Pullover
+18           2604        3  Dress
+19           3122       10  Sandal
+  [Data] Client 0 boosted: 328 samples (was too small for alpha=0.05)
+  [Data] Client 4 boosted: 414 samples (was too small for alpha=0.05)
+  [Data] Client 5 boosted: 267 samples (was too small for alpha=0.05)
+  [Data] Client 9 boosted: 286 samples (was too small for alpha=0.05)
+  [Data] Client 14 boosted: 438 samples (was too small for alpha=0.05)
+[Data] Total train: 55191 | Test: 10000 | Min/Max per client: 256/9686
+
+[Runner] Starting FedAvg ...
+
+==================================================
+  Running: FedAvg [FashionMNIST]
+==================================================
+[         FedAvg] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 47.29%  Client: 47.85%
+[         FedAvg] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 75.35%  Client: 71.83%
+[         FedAvg] Round  20/50 [████████░░░░░░░░░░░░] Global: 78.68%  Client: 75.75%
+[         FedAvg] Round  30/50 [████████████░░░░░░░░] Global: 80.76%  Client: 78.52%
+[         FedAvg] Round  40/50 [████████████████░░░░] Global: 83.35%  Client: 82.79%
+[         FedAvg] Round  50/50 [████████████████████] Global: 84.01%  Client: 83.47%
+  [FedAvg] Best global: 85.11%  Best client: 84.60%
+  ✓ FedAvg done in 26.8 min  → saved to ./results/fmnist/alpha_005/results.json
+
+[Runner] Starting HedonicMFG ...
+
+==================================================
+  Running: HedonicMFG [FashionMNIST]
+==================================================
+
+  [Phase 1] Warmup (15 rounds) ...
+  [Phase 1] Warmup complete. Global acc: 78.00%
+
+  [Phase 2] Initial coalition formation (K=3)...
+  Coalitions: [[0, 1, 9, 11, 14], [3, 6, 7, 8, 12, 13, 17, 19], [2, 4, 5, 10, 15, 16, 18]]
+  Sizes: [5, 8, 7]
+
+  [Phase 3] Clustered training with MFG (35 rounds)...
+[     HedonicMFG] Round  16/50 [██████░░░░░░░░░░░░░░] Global: 74.01%  Client: 83.49%
+[     HedonicMFG] Round  20/50 [████████░░░░░░░░░░░░] Global: 73.18%  Client: 88.48%
+[     HedonicMFG] Round  30/50 [████████████░░░░░░░░] Global: 75.05%  Client: 88.93%
+[     HedonicMFG] Round  40/50 [████████████████░░░░] Global: 76.41%  Client: 88.63%
+[     HedonicMFG] Round  50/50 [████████████████████] Global: 78.04%  Client: 88.99%
+
+  [HedonicMFG] Best global: 80.10%  Best client: 90.46%
+  ✓ HedonicMFG done in 39.8 min  → saved to ./results/fmnist/alpha_005/results.json
+
+=================================================================
+  RESULTS — FashionMNIST  α=0.05
+=================================================================
+
+========================================================================
+Algorithm             Best Global  Final Global  Best Client  Final Client
+========================================================================
+FedAvg                     85.11%         84.01%        84.60%         83.47%
+HedonicMFG                 80.10%         78.04%        90.46%         88.99%
+========================================================================
+  Total time: 66.6 min
+
+  HedonicMFG vs FedAvg:
+  Global Δ: ✗ -5.01%   Client Δ: ✓ +5.86%
+[Plot] Convergence saved: ./results/fmnist/alpha_005/fmnist_alpha005_convergence.png
+[Plot] Bar chart saved: ./results/fmnist/alpha_005/fmnist_alpha005_bar.png
+
+[Done] α=0.05 results → ./results/fmnist/alpha_005/
+       Run 'python combine_plots.py --datasets fmnist' when all alphas are done.

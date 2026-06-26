@@ -1,0 +1,99 @@
+(fl-bilevel) vishal1@vishal1:~/varun/ALBATROSS/1.4/ablation_study$ python runner_fmnist.py --alpha 0.3
+
+╔══════════════════════════════════════════════════════╗
+║  FashionMNIST Federated Learning Experiment        ║
+╠══════════════════════════════════════════════════════╣
+║  Clients        : 20                                  ║
+║  Rounds         : 50                                  ║
+║  Dirichlet α    : 0.3                                 ║
+║  Coalitions (K) : 3                                   ║
+║  Warmup rounds  : 15                                  ║
+║  Recluster int. : 10                                  ║
+║  Device         : cuda                                ║
+║  Seed           : 42                                  ║
+╚══════════════════════════════════════════════════════╝
+
+[Runner] Loading FashionMNIST data (α=0.3) ...
+
+[Data] FashionMNIST | 20 clients | Dirichlet alpha=0.3
+
+Client    Samples  Classes  Dominant class
+-------------------------------------------------------
+0            2985        9  Pullover
+1            3974       10  Shirt
+2            6805        8  Sneaker
+3            6714        9  Trouser
+4            1335        9  Pullover
+5            2574       10  Sandal
+6            2558        9  Ankle boot
+7            2295        7  Dress
+8            3945        8  Bag
+9            2182        8  Coat
+10           2266       10  Coat
+11           1401        8  Sandal
+12           2631        6  Coat
+13           3259       10  Sandal
+14           1569       10  Dress
+15           3424        9  Sandal
+16           1584        9  T-shirt
+17           3071        9  Bag
+18           1618       10  Dress
+19           3810       10  Sneaker
+[Data] Total train: 54009 | Test: 10000 | Min/Max per client: 1202/6125
+
+[Runner] Starting FedAvg ...
+
+==================================================
+  Running: FedAvg [FashionMNIST]
+==================================================
+[         FedAvg] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 57.47%  Client: 57.02%
+[         FedAvg] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 82.09%  Client: 81.87%
+[         FedAvg] Round  20/50 [████████░░░░░░░░░░░░] Global: 86.02%  Client: 85.05%
+[         FedAvg] Round  30/50 [████████████░░░░░░░░] Global: 87.11%  Client: 87.09%
+[         FedAvg] Round  40/50 [████████████████░░░░] Global: 87.97%  Client: 88.15%
+[         FedAvg] Round  50/50 [████████████████████] Global: 88.83%  Client: 88.69%
+  [FedAvg] Best global: 88.83%  Best client: 88.69%
+  ✓ FedAvg done in 25.6 min  → saved to ./results/fmnist/alpha_03/results.json
+
+[Runner] Starting HedonicMFG ...
+
+==================================================
+  Running: HedonicMFG [FashionMNIST]
+==================================================
+
+  [Phase 1] Warmup (15 rounds) ...
+  [Phase 1] Warmup complete. Global acc: 84.70%
+
+  [Phase 2] Initial coalition formation (K=3)...
+  Coalitions: [[0, 1, 9, 11, 12, 14, 16], [3, 6, 7, 8, 13, 17, 19], [2, 4, 5, 10, 15, 18]]
+  Sizes: [7, 7, 6]
+
+  [Phase 3] Clustered training with MFG (35 rounds)...
+[     HedonicMFG] Round  16/50 [██████░░░░░░░░░░░░░░] Global: 85.02%  Client: 87.83%
+[     HedonicMFG] Round  20/50 [████████░░░░░░░░░░░░] Global: 85.80%  Client: 89.88%
+[     HedonicMFG] Round  30/50 [████████████░░░░░░░░] Global: 87.19%  Client: 90.24%
+[     HedonicMFG] Round  40/50 [████████████████░░░░] Global: 87.89%  Client: 89.98%
+[     HedonicMFG] Round  50/50 [████████████████████] Global: 88.40%  Client: 89.81%
+
+  [HedonicMFG] Best global: 88.40%  Best client: 90.35%
+  ✓ HedonicMFG done in 37.8 min  → saved to ./results/fmnist/alpha_03/results.json
+
+=================================================================
+  RESULTS — FashionMNIST  α=0.3
+=================================================================
+
+========================================================================
+Algorithm             Best Global  Final Global  Best Client  Final Client
+========================================================================
+FedAvg                     88.83%         88.83%        88.69%         88.69%
+HedonicMFG                 88.40%         88.40%        90.35%         89.81%
+========================================================================
+  Total time: 63.4 min
+
+  HedonicMFG vs FedAvg:
+  Global Δ: ✗ -0.43%   Client Δ: ✓ +1.66%
+[Plot] Convergence saved: ./results/fmnist/alpha_03/fmnist_alpha03_convergence.png
+[Plot] Bar chart saved: ./results/fmnist/alpha_03/fmnist_alpha03_bar.png
+
+[Done] α=0.3 results → ./results/fmnist/alpha_03/
+       Run 'python combine_plots.py --datasets fmnist' when all alphas are done.
