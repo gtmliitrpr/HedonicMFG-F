@@ -1,0 +1,62 @@
+(fl-bilevel) vishal1@vishal1:~/varun/ALBATROSS/3.1/k_ablation$ python combine_plots.py
+
+╔══════════════════════════════════════════════════════╗
+║  combine_plots.py — K Ablation Summary            ║
+╠══════════════════════════════════════════════════════╣
+║  K values  : [2, 3, 4, 5, 6, 8]                        ║
+║  Dataset   : MNIST (N=20, α=0.3)                       ║
+║  Output    : ./results                                 ║
+╚══════════════════════════════════════════════════════╝
+
+[Load] Reading results from ./results/
+  [Load] K=2: found ['FedAvg', 'HedonicMFG']
+  [Load] K=3: found ['FedAvg', 'HedonicMFG']
+  [Load] K=4: found ['FedAvg', 'HedonicMFG']
+  [Load] K=5: found ['FedAvg', 'HedonicMFG']
+  [Load] K=6: found ['FedAvg', 'HedonicMFG']
+  [Load] K=8: found ['FedAvg', 'HedonicMFG']
+
+[Plots] Generating all plots ...
+[Plot] ./results/mnist_convergence_per_K_FedAvg.png
+[Plot] ./results/mnist_convergence_per_K_HedonicMFG.png
+[Plot] ./results/mnist_accuracy_vs_K.png
+[Plot] ./results/mnist_gain_vs_K.png
+[Plot] ./results/mnist_optimal_K.png
+[Plot] Combined summary → ./results/mnist_combined_summary.png
+
+===========================================================================
+  K Ablation Summary — MNIST (N=20, α=0.3)
+===========================================================================
+  K     Algorithm       Best Global  Final Global  Best Client  Final Client
+  -----------------------------------------------------------------------
+  2     FedAvg               96.72%         95.79%        97.19%         96.34%
+  2     HedonicMFG           96.47%         95.78%        96.81%         95.30%
+  3     FedAvg               96.72%         95.79%        97.19%         96.34%
+  3     HedonicMFG           96.12%         95.35%        96.46%         95.09%
+  4     FedAvg               96.72%         95.79%        97.19%         96.34%
+  4     HedonicMFG           96.60%         95.41%        96.09%         95.45%
+  5     FedAvg               96.72%         95.79%        97.19%         96.34%
+  5     HedonicMFG           96.20%         95.03%        96.45%         94.95%
+  6     FedAvg               96.72%         95.79%        97.19%         96.34%
+  6     HedonicMFG           95.91%         95.25%        96.55%         95.11%
+  8     FedAvg               96.72%         95.79%        97.19%         96.34%
+  8     HedonicMFG           95.98%         94.95%        96.11%         94.46%
+
+  HedonicMFG Gain over FedAvg:
+  K         ΔGlobal     ΔClient
+  ------------------------------
+  2      ✗   -0.25%   ✗   -0.38%
+  3      ✗   -0.60%   ✗   -0.73%
+  4      ✗   -0.12%   ✗   -1.10%
+  5      ✗   -0.52%   ✗   -0.74%
+  6      ✗   -0.81%   ✗   -0.64%
+  8      ✗   -0.74%   ✗   -1.08%
+===========================================================================
+
+[Done] All plots saved to ./results/
+       mnist_convergence_per_K_FedAvg.png
+       mnist_convergence_per_K_HedonicMFG.png
+       mnist_accuracy_vs_K.png
+       mnist_gain_vs_K.png
+       mnist_optimal_K.png          ← key insight plot for paper
+       mnist_combined_summary.png
