@@ -1,0 +1,130 @@
+(fl-bilevel) vishal1@vishal1:~/varun/ALBATROSS/2.1/client_ablation$ python runner_clients.py --clients 50
+
+╔════════════════════════════════════════════════════════╗
+║  Client Ablation — FashionMNIST                       ║
+╠════════════════════════════════════════════════════════╣
+║  Num clients    : 50                                    ║
+║  Coalitions (K) : 3                                     ║
+║  Min coal size  : 8                                     ║
+║  Dirichlet α    : 0.3                                   ║
+║  Total rounds   : 50                                    ║
+║  Warmup rounds  : 11                                    ║
+║  Recluster int. : 10                                    ║
+║  Device         : cuda                                  ║
+║  Seed           : 42                                    ║
+╚════════════════════════════════════════════════════════╝
+
+[Runner] Loading FashionMNIST (N=50, α=0.3) ...
+
+[Data] FashionMNIST | 50 clients | Dirichlet alpha=0.3
+
+Client    Samples  Classes  Dominant class
+-------------------------------------------------------
+0             876        9  Sandal
+1             726        8  T-shirt
+2             521        7  Shirt
+3             349        9  Dress
+4             320        9  Ankle boot
+5            1019       10  Pullover
+6            1209        7  Sandal
+7            2176        9  Bag
+8            1515        9  Sneaker
+9            2804        9  Coat
+10           1225       10  Bag
+11            519        7  Pullover
+12            603        8  Dress
+13           1280       10  Pullover
+14            282       10  Shirt
+15           2468       10  Shirt
+16           2089        9  Sneaker
+17           2211        9  Ankle boot
+18           1009       10  Dress
+19           2041        9  Shirt
+20           1083       10  Sandal
+21           1666        9  Pullover
+22           1066        8  T-shirt
+23           1568        9  T-shirt
+24           1752        8  Trouser
+25            656        7  Trouser
+26           1480        9  Sneaker
+27           2435        7  Coat
+28            645       10  Trouser
+29            859        7  Sneaker
+30            495        9  Pullover
+31           1053       10  Coat
+32           1545        9  Dress
+33           2647        9  Dress
+34            422        9  Sandal
+35            849        9  Coat
+36           1474        9  Ankle boot
+37            461       10  T-shirt
+38            335        8  Pullover
+39            430        8  Trouser
+40            760        8  T-shirt
+41           1469        9  Sneaker
+42           2798        8  Pullover
+43           2461        9  Shirt
+44           1701       10  Ankle boot
+45            361        8  Trouser
+46            485       10  Pullover
+47            660        8  Bag
+48            354       10  T-shirt
+49            788       10  Coat
+[Data] Total train: 54025 | Test: 10000 | Min/Max per client: 256/2524
+
+[Runner] Starting FedAvg (N=50) ...
+
+==================================================
+  Running: FedAvg [FashionMNIST]
+==================================================
+[         FedAvg] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 45.20%  Client: 44.87%
+[         FedAvg] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 77.84%  Client: 79.58%
+[         FedAvg] Round  20/50 [████████░░░░░░░░░░░░] Global: 82.36%  Client: 83.50%
+[         FedAvg] Round  30/50 [████████████░░░░░░░░] Global: 84.69%  Client: 86.15%
+[         FedAvg] Round  40/50 [████████████████░░░░] Global: 85.95%  Client: 86.61%
+[         FedAvg] Round  50/50 [████████████████████] Global: 86.67%  Client: 88.02%
+  [FedAvg] Best global: 86.69%  Best client: 88.02%
+  ✓ FedAvg done in 50.2 min  → ./results/clients_050/results.json
+
+[Runner] Starting HedonicMFG (N=50) ...
+
+==================================================
+  Running: HedonicMFG [FashionMNIST]
+==================================================
+
+  [Phase 1] Warmup (11 rounds) ...
+  [Phase 1] Warmup complete. Global acc: 78.68%
+
+  [Phase 2] Initial coalition formation (K=3)...
+  Coalitions: [[1, 6, 7, 13, 16, 18, 19, 26, 27, 28, 31, 37, 40, 43, 45, 47], [0, 8, 10, 11, 12, 15, 17, 21, 24, 25, 33, 35, 38, 39, 41, 42, 49], [2, 3, 4, 5, 9, 14, 20, 22, 23, 29, 30, 32, 34, 36, 44, 46, 48]]
+  Sizes: [16, 17, 17]
+
+  [Phase 3] Clustered training with MFG (39 rounds)...
+[     HedonicMFG] Round  12/50 [████░░░░░░░░░░░░░░░░] Global: 79.16%  Client: 80.40%
+[     HedonicMFG] Round  20/50 [████████░░░░░░░░░░░░] Global: 82.36%  Client: 89.01%
+[     HedonicMFG] Round  30/50 [████████████░░░░░░░░] Global: 84.54%  Client: 89.30%
+[     HedonicMFG] Round  40/50 [████████████████░░░░] Global: 85.80%  Client: 89.75%
+[     HedonicMFG] Round  50/50 [████████████████████] Global: 86.50%  Client: 89.94%
+
+  [HedonicMFG] Best global: 86.50%  Best client: 89.94%
+  ✓ HedonicMFG done in 108.5 min  → ./results/clients_050/results.json
+
+=================================================================
+  RESULTS — FashionMNIST  N=50 clients
+=================================================================
+
+========================================================================
+Algorithm             Best Global  Final Global  Best Client  Final Client
+========================================================================
+FedAvg                     86.69%         86.67%        88.02%         88.02%
+HedonicMFG                 86.50%         86.50%        89.94%         89.94%
+========================================================================
+  Total time: 158.6 min
+
+  HedonicMFG vs FedAvg (N=50):
+  Global Δ: ✗ -0.19%   Client Δ: ✓ +1.92%
+[Plot] ./results/clients_050/fmnist_N50_convergence.png
+[Plot] ./results/clients_050/fmnist_N50_bar.png
+
+[Done] N=50 → ./results/clients_050/
+       Run 'python combine_plots.py' when all client counts are done.

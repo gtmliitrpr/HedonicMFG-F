@@ -1,0 +1,192 @@
+(fl-bilevel) vishal1@vishal1:~/varun/ALBATROSS/2.1/client_ablation$ python runner_clients.py --clients 100
+
+╔════════════════════════════════════════════════════════╗
+║  Client Ablation — FashionMNIST                       ║
+╠════════════════════════════════════════════════════════╣
+║  Num clients    : 100                                   ║
+║  Coalitions (K) : 3                                     ║
+║  Min coal size  : 8                                     ║
+║  Dirichlet α    : 0.3                                   ║
+║  Total rounds   : 50                                    ║
+║  Warmup rounds  : 11                                    ║
+║  Recluster int. : 10                                    ║
+║  Device         : cuda                                  ║
+║  Seed           : 42                                    ║
+╚════════════════════════════════════════════════════════╝
+
+[Runner] Loading FashionMNIST (N=100, α=0.3) ...
+
+[Data] FashionMNIST | 100 clients | Dirichlet alpha=0.3
+
+Client    Samples  Classes  Dominant class
+-------------------------------------------------------
+0             349        8  Coat
+1             537        9  T-shirt
+2             326        8  Bag
+3             120        8  Sneaker
+4             283        9  Shirt
+5             613        8  Shirt
+6             737        9  Bag
+7            1326        8  Coat
+8             521        9  T-shirt
+9             924        6  Pullover
+10            525        8  Coat
+11            449        7  Sandal
+12            198        8  Sandal
+13            687       10  Ankle boot
+14            124        8  Dress
+15            834        8  Dress
+16            470        6  T-shirt
+17           1096        9  Shirt
+18            162       10  T-shirt
+19            703        9  Dress
+20            369       10  Pullover
+21            820        9  Trouser
+22           1062        8  Sneaker
+23            839        9  T-shirt
+24            370        6  Pullover
+25            180        8  Trouser
+26            968        7  Sneaker
+27            772        7  Pullover
+28            149        9  Trouser
+29            357       10  Ankle boot
+30            524        8  Shirt
+31           1428       10  Ankle boot
+32            428        9  Dress
+33            666        6  Coat
+34            303        8  Ankle boot
+35            483        7  Pullover
+36            208        7  Bag
+37            798        8  Sandal
+38            823        5  Sandal
+39            589        8  Sandal
+40            467        9  T-shirt
+41            807        9  Shirt
+42           1641        9  Trouser
+43           1135        8  Dress
+44            863       10  Pullover
+45            467        9  Shirt
+46            453        8  Trouser
+47            450        9  Coat
+48            250        8  T-shirt
+49           1172        9  Bag
+50            284        8  Pullover
+51            639        5  Sandal
+52            176        8  Dress
+53            372        8  Shirt
+54            350        7  Ankle boot
+55            355        9  Shirt
+56            646        7  Pullover
+57            372        8  Ankle boot
+58            588        9  Dress
+59           1125       10  Trouser
+60           1370        9  Ankle boot
+61            312        8  Sandal
+62            572        8  Sandal
+63            523        8  Bag
+64            451        8  Ankle boot
+65            910       10  Pullover
+66            987        9  Dress
+67            990        7  Ankle boot
+68            947        9  Sneaker
+69            677        9  Ankle boot
+70            335        8  Pullover
+71            285        7  Pullover
+72            342       10  Pullover
+73            319        8  Shirt
+74            659        8  T-shirt
+75            461        9  Sandal
+76            447        8  Dress
+77            628        8  Coat
+78            197        6  T-shirt
+79            838        6  Shirt
+80            448       10  Ankle boot
+81            791        8  Ankle boot
+82            874        9  Trouser
+83           1017        8  Trouser
+84            350        9  Sneaker
+85            554        8  Shirt
+86           1556        8  Bag
+87            351        9  Shirt
+88            308        8  Sneaker
+89            172        8  T-shirt
+90            518        8  Sneaker
+91            472        9  Dress
+92            691        8  T-shirt
+93            942       10  Sneaker
+94            882       10  Bag
+95            274        9  T-shirt
+96            503       10  Shirt
+97            163        7  Trouser
+98            771       10  Ankle boot
+99            381       10  Bag
+  [Data] Client 3 boosted: 377 samples (was too small for alpha=0.3)
+  [Data] Client 12 boosted: 455 samples (was too small for alpha=0.3)
+  [Data] Client 14 boosted: 379 samples (was too small for alpha=0.3)
+  [Data] Client 18 boosted: 417 samples (was too small for alpha=0.3)
+  [Data] Client 25 boosted: 437 samples (was too small for alpha=0.3)
+  [Data] Client 28 boosted: 406 samples (was too small for alpha=0.3)
+  [Data] Client 36 boosted: 464 samples (was too small for alpha=0.3)
+  [Data] Client 48 boosted: 507 samples (was too small for alpha=0.3)
+  [Data] Client 52 boosted: 432 samples (was too small for alpha=0.3)
+  [Data] Client 78 boosted: 451 samples (was too small for alpha=0.3)
+  [Data] Client 89 boosted: 429 samples (was too small for alpha=0.3)
+  [Data] Client 97 boosted: 419 samples (was too small for alpha=0.3)
+[Data] Total train: 56823 | Test: 10000 | Min/Max per client: 256/1477
+
+[Runner] Starting FedAvg (N=100) ...
+
+==================================================
+  Running: FedAvg [FashionMNIST]
+==================================================
+[         FedAvg] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 49.75%  Client: 44.79%
+[         FedAvg] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 73.24%  Client: 73.41%
+[         FedAvg] Round  20/50 [████████░░░░░░░░░░░░] Global: 77.48%  Client: 77.86%
+[         FedAvg] Round  30/50 [████████████░░░░░░░░] Global: 79.52%  Client: 80.10%
+[         FedAvg] Round  40/50 [████████████████░░░░] Global: 81.43%  Client: 82.18%
+[         FedAvg] Round  50/50 [████████████████████] Global: 82.71%  Client: 83.28%
+  [FedAvg] Best global: 82.71%  Best client: 83.50%
+  ✓ FedAvg done in 98.8 min  → ./results/clients_100/results.json
+
+[Runner] Starting HedonicMFG (N=100) ...
+
+==================================================
+  Running: HedonicMFG [FashionMNIST]
+==================================================
+
+  [Phase 1] Warmup (11 rounds) ...
+  [Phase 1] Warmup complete. Global acc: 73.89%
+
+  [Phase 2] Initial coalition formation (K=3)...
+  Coalitions: [[0, 1, 2, 3, 4, 7, 8, 11, 12, 16, 19, 22, 28, 43, 45, 46, 51, 56, 57, 58, 62, 64, 66, 69, 71, 73, 82, 83, 84, 88, 91, 94, 96, 97], [9, 13, 14, 15, 17, 18, 20, 23, 26, 31, 33, 36, 37, 44, 47, 48, 49, 50, 52, 53, 59, 65, 68, 74, 75, 76, 78, 80, 81, 93, 95, 99], [5, 6, 10, 21, 24, 25, 27, 29, 30, 32, 34, 35, 38, 39, 40, 41, 42, 54, 55, 60, 61, 63, 67, 70, 72, 77, 79, 85, 86, 87, 89, 90, 92, 98]]
+  Sizes: [34, 32, 34]
+
+  [Phase 3] Clustered training with MFG (39 rounds)...
+[     HedonicMFG] Round  12/50 [████░░░░░░░░░░░░░░░░] Global: 73.77%  Client: 70.37%
+[     HedonicMFG] Round  20/50 [████████░░░░░░░░░░░░] Global: 77.21%  Client: 85.05%
+[     HedonicMFG] Round  30/50 [████████████░░░░░░░░] Global: 79.34%  Client: 85.90%
+[     HedonicMFG] Round  40/50 [████████████████░░░░] Global: 81.22%  Client: 85.85%
+[     HedonicMFG] Round  50/50 [████████████████████] Global: 82.41%  Client: 85.61%
+
+  [HedonicMFG] Best global: 82.41%  Best client: 86.06%
+  ✓ HedonicMFG done in 274.3 min  → ./results/clients_100/results.json
+
+=================================================================
+  RESULTS — FashionMNIST  N=100 clients
+=================================================================
+
+========================================================================
+Algorithm             Best Global  Final Global  Best Client  Final Client
+========================================================================
+FedAvg                     82.71%         82.71%        83.50%         83.28%
+HedonicMFG                 82.41%         82.41%        86.06%         85.61%
+========================================================================
+  Total time: 373.1 min
+
+  HedonicMFG vs FedAvg (N=100):
+  Global Δ: ✗ -0.30%   Client Δ: ✓ +2.56%
+[Plot] ./results/clients_100/fmnist_N100_convergence.png
+[Plot] ./results/clients_100/fmnist_N100_bar.png
+
+[Done] N=100 → ./results/clients_100/
+       Run 'python combine_plots.py' when all client counts are done.

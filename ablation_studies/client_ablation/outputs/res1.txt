@@ -1,0 +1,88 @@
+╔════════════════════════════════════════════════════════╗
+║  Client Ablation — FashionMNIST                       ║
+╠════════════════════════════════════════════════════════╣
+║  Num clients    : 10                                    ║
+║  Coalitions (K) : 3                                     ║
+║  Min coal size  : 2                                     ║
+║  Dirichlet α    : 0.3                                   ║
+║  Total rounds   : 50                                    ║
+║  Warmup rounds  : 11                                    ║
+║  Recluster int. : 10                                    ║
+║  Device         : cuda                                  ║
+║  Seed           : 42                                    ║
+╚════════════════════════════════════════════════════════╝
+
+[Runner] Loading FashionMNIST (N=10, α=0.3) ...
+
+[Data] FashionMNIST | 10 clients | Dirichlet alpha=0.3
+
+Client    Samples  Classes  Dominant class
+-------------------------------------------------------
+0            7098       10  Coat
+1            3179        9  T-shirt
+2            7986        8  Ankle boot
+3            8179        9  Pullover
+4            4043        9  Sneaker
+5            5961       10  Sneaker
+6            4433        9  Trouser
+7            7342        9  Shirt
+8            5294        9  T-shirt
+9            6485       10  Sandal
+[Data] Total train: 54005 | Test: 10000 | Min/Max per client: 2862/7362
+
+[Runner] Starting FedAvg (N=10) ...
+
+==================================================
+  Running: FedAvg [FashionMNIST]
+==================================================
+[         FedAvg] Round   1/50 [░░░░░░░░░░░░░░░░░░░░] Global: 62.48%  Client: 61.16%
+[         FedAvg] Round  10/50 [████░░░░░░░░░░░░░░░░] Global: 84.52%  Client: 84.67%
+[         FedAvg] Round  20/50 [████████░░░░░░░░░░░░] Global: 86.85%  Client: 87.06%
+[         FedAvg] Round  30/50 [████████████░░░░░░░░] Global: 88.42%  Client: 88.98%
+[         FedAvg] Round  40/50 [████████████████░░░░] Global: 89.41%  Client: 89.53%
+[         FedAvg] Round  50/50 [████████████████████] Global: 89.64%  Client: 89.85%
+  [FedAvg] Best global: 89.77%  Best client: 89.96%
+  ✓ FedAvg done in 21.8 min  → ./results/clients_010/results.json
+
+[Runner] Starting HedonicMFG (N=10) ...
+
+==================================================
+  Running: HedonicMFG [FashionMNIST]
+==================================================
+
+  [Phase 1] Warmup (11 rounds) ...
+  [Phase 1] Warmup complete. Global acc: 84.80%
+
+  [Phase 2] Initial coalition formation (K=3)...
+  Coalitions: [[0, 6, 8, 9], [1, 4, 7], [2, 3, 5]]
+  Sizes: [4, 3, 3]
+
+  [Phase 3] Clustered training with MFG (39 rounds)...
+[     HedonicMFG] Round  12/50 [████░░░░░░░░░░░░░░░░] Global: 84.72%  Client: 91.69%
+[     HedonicMFG] Round  20/50 [████████░░░░░░░░░░░░] Global: 86.42%  Client: 90.55%
+[     HedonicMFG] Round  30/50 [████████████░░░░░░░░] Global: 87.89%  Client: 91.17%
+[     HedonicMFG] Round  40/50 [████████████████░░░░] Global: 88.34%  Client: 90.56%
+[     HedonicMFG] Round  50/50 [████████████████████] Global: 88.55%  Client: 90.72%
+
+  [HedonicMFG] Best global: 88.80%  Best client: 92.00%
+  ✓ HedonicMFG done in 32.7 min  → ./results/clients_010/results.json
+
+=================================================================
+  RESULTS — FashionMNIST  N=10 clients
+=================================================================
+
+========================================================================
+Algorithm             Best Global  Final Global  Best Client  Final Client
+========================================================================
+FedAvg                     89.77%         89.64%        89.96%         89.85%
+HedonicMFG                 88.80%         88.55%        92.00%         90.72%
+========================================================================
+  Total time: 54.5 min
+
+  HedonicMFG vs FedAvg (N=10):
+  Global Δ: ✗ -0.97%   Client Δ: ✓ +2.04%
+[Plot] ./results/clients_010/fmnist_N10_convergence.png
+[Plot] ./results/clients_010/fmnist_N10_bar.png
+
+[Done] N=10 → ./results/clients_010/
+       Run 'python combine_plots.py' when all client counts are done.
